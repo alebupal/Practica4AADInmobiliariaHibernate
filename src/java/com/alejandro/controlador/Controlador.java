@@ -90,7 +90,7 @@ public class Controlador extends HttpServlet {
             in.setCalle(request.getParameter("calle"));
             in.setLocalidad(request.getParameter("localidad"));
             in.setPrecio(Integer.parseInt(request.getParameter("precio")));
-            in.setSubido(Integer.parseInt(request.getParameter("subido")));
+            in.setUsuario(request.getParameter("usuario"));
             in.setTipo(request.getParameter("tipo"));
             ModeloInmueble.insert(in);
         } else if (target.equals("inmueble") && op.equals("edit") && action.equals("view")) {
@@ -106,10 +106,10 @@ public class Controlador extends HttpServlet {
             in.setId(Integer.parseInt(request.getParameter("id")));
             in.setLocalidad(request.getParameter("localidad"));
             in.setPrecio(Integer.parseInt(request.getParameter("precio")));
-            in.setSubido(Integer.parseInt(request.getParameter("subido")));
+            in.setUsuario(request.getParameter("usuario"));
             in.setTipo(request.getParameter("tipo"));
             ModeloInmueble.edit(in);
-        }if (target.equals("inmueble") && op.equals("subir") && action.equals("view")) {
+        }else if (target.equals("inmueble") && op.equals("subir") && action.equals("view")) {
             forward = true;
             request.setAttribute("idInmuebleFoto", ModeloInmueble.get2(request.getParameter("idInmuebleFoto")));
             destino = "WEB-INF/acciones/subir.jsp";
@@ -122,7 +122,6 @@ public class Controlador extends HttpServlet {
              if (!theDir.exists()) {
                 System.out.println("creating directory: ");
                 boolean result = false;
-
                 try{
                     theDir.mkdir();
                     result = true;
@@ -136,7 +135,7 @@ public class Controlador extends HttpServlet {
             Boolean error = false;
             Part archivoPost = request.getPart("archivo");
             String[] fecha=getFecha().split("-");
-            String nombreArchivoPost = "inmueble_"+idInmuebleFoto+"_"+fecha[0]+"_"+fecha[1]+"_"+fecha[2]+"_"+fecha[3]+"_"+fecha[4]+"_"+fecha[5];
+            String nombreArchivoPost = "inmueble_"+idInmuebleFoto+"_"+fecha[0]+"_"+fecha[1]+"_"+fecha[2]+"_"+fecha[3]+"_"+fecha[4]+"_"+fecha[5]+"_"+fecha[6];
             InputStream input = archivoPost.getInputStream();
             String destinoFoto = getServletContext().getRealPath("/") + "images/inmuebles/"+idInmuebleFoto+"/";
             response.setContentType("application/json");
@@ -172,7 +171,7 @@ public class Controlador extends HttpServlet {
             request.setAttribute("inmuebleDetalle", ModeloInmueble.get2(idInmuebleFoto));
             destino = "WEB-INF/acciones/detalle.jsp";
             
-        }if (target.equals("inmueble") && op.equals("eliminarFoto") && action.equals("view")) {
+        }else if (target.equals("inmueble") && op.equals("eliminarFoto") && action.equals("view")) {
             forward = true;
             destino = "WEB-INF/acciones/gestionFotos.jsp";
             request.setAttribute("idInmuebleFotos", request.getParameter("idInmuebleFotos"));
@@ -186,6 +185,17 @@ public class Controlador extends HttpServlet {
             
             request.setAttribute("inmuebleDetalle", ModeloInmueble.get2(idInmueble+""));
             destino = "WEB-INF/acciones/detalle.jsp";
+        }else if (target.equals("android") && op.equals("insert") && action.equals("op")) {
+            forward = true;
+            Inmueble in = new Inmueble();
+            in.setTipo(request.getParameter("tipo"));
+            in.setLocalidad(request.getParameter("localidad").replace("%20", " "));
+            in.setCalle(request.getParameter("calle").replace("%20", " "));
+            in.setUsuario(request.getParameter("usuario").replace("%20", " "));
+            in.setPrecio(Integer.parseInt(request.getParameter("precio").replace("%20", " ")));
+            Integer id=ModeloInmueble.insertID(in);
+            request.setAttribute("id", id);
+            destino = "WEB-INF/acciones/idInsertado.jsp";
         }
 
         if (forward) {
@@ -199,7 +209,7 @@ public class Controlador extends HttpServlet {
 
         Calendar cal = new GregorianCalendar();
         Date date = cal.getTime();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss-SSS");
         String formatteDate;
         formatteDate = df.format(date);
         return formatteDate;

@@ -14,17 +14,17 @@ public class Inmueble  implements java.io.Serializable {
      private String localidad;
      private String tipo;
      private int precio;
-     private int subido;
+     private String usuario;
 
     public Inmueble() {
     }
 
-    public Inmueble(String calle, String localidad, String tipo, int precio, int subido) {
+    public Inmueble(String calle, String localidad, String tipo, int precio, String usuario) {
        this.calle = calle;
        this.localidad = localidad;
        this.tipo = tipo;
        this.precio = precio;
-       this.subido = subido;
+       this.usuario = usuario;
     }
    
     public Integer getId() {
@@ -62,17 +62,14 @@ public class Inmueble  implements java.io.Serializable {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
-    public int getSubido() {
-        return this.subido;
-    }
-    
-    public void setSubido(int subido) {
-        this.subido = subido;
+
+    public String getUsuario() {
+        return usuario;
     }
 
-
-
-
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
 }
 
 

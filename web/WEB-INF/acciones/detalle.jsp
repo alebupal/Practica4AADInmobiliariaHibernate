@@ -271,7 +271,7 @@
 						<h2 class="widget-title">Agent Information</h2>
 						<div class="agent">
 						<p><img src="images/content/pic1.jpg" alt="" class="alignleft" />	
-							<span class="black">Don Rudolf</span><br />
+							<span class="black"><%= in.getUsuario()%></span><br />
 							Mobile: (866) 479-0889<br />
 							Fax: (310) 521-6555<br />
 							Broker: (310) 434-5000

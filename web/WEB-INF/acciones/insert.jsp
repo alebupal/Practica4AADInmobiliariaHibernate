@@ -107,7 +107,7 @@
                             <br>
                             <span class="spanAnadir">Precio: </span><input type="text" name="precio" value="" />
                             <br>
-                            <input type="hidden" name="subido" value="1" />
+                            <input type="hidden" name="usuario" value="web" />
                             <input type="hidden" name="target" value="inmueble" />
                             <input type="hidden" name="op" value="insert" />
                             <input type="hidden" name="action" value="op" />

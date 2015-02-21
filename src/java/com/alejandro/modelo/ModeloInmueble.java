@@ -47,6 +47,16 @@ public class ModeloInmueble {
         session.flush();
         session.close();
     }
+    public static Integer insertID(Inmueble in){
+        Session session = HibernateUtil.getSessionFactory().
+                openSession();
+        session.beginTransaction();
+        Integer id=(Integer) session.save(in);
+        session.getTransaction().commit();
+        session.flush();
+        session.close();
+        return id;
+    }
     public static Inmueble get2(String id){
         Session session = HibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();

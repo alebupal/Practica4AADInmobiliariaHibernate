@@ -105,7 +105,6 @@
                             String rutaMal;
                             String[] rutas;
                             String rutaBien;
-                            
                             for (Inmueble p : lista) {
                                 listaImagen = (List<Imagen>) ModeloImagen.getidInmueble(p.getId()+"");
                                 if(listaImagen.size()==0){
@@ -126,9 +125,7 @@
                             </ul>	
                             <a href="control?target=inmueble&op=delete&action=op&id=<%= p.getId()%>">Borrar</a>
                             <a href="control?target=inmueble&op=edit&action=view&id=<%= p.getId()%>">Editar</a>
-
                         </li>
-
                         <%
                             }
                         %>			

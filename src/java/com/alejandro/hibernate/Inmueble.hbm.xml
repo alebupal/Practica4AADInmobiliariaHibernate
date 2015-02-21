@@ -20,8 +20,8 @@
         <property name="precio" type="int">
             <column name="precio" not-null="true" />
         </property>
-        <property name="subido" type="int">
-            <column name="subido" not-null="true" />
+        <property name="usuario" type="string">
+            <column name="usuario" length="40" not-null="true"  />
         </property>
     </class>
 </hibernate-mapping>

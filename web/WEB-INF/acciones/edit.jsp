@@ -116,7 +116,6 @@
                                 <option value="cochera" >Cochera</option>
                                 <% }%>
                             </select>
-                            
                             <br>
                             <span class="spanAnadir">Precio: </span><input type="text" name="precio" value="<%= in.getPrecio()%>" />
                             <br>
@@ -124,7 +123,7 @@
                             <input type="hidden" name="op" value="edit" />
                             <input type="hidden" name="action" value="op" />
                             <input type="hidden" name="id" value="<%= in.getId() %>" />
-                            <input type="hidden" name="subido" value="1" />
+                            <input type="hidden" name="usuario" value="web" />
                             <input type="submit" value="Editar" />
                             <br>
                         </form>

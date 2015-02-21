@@ -103,9 +103,8 @@
 			<div id="slideshow_navigation">
 			<div id="pager"></div>
 			</div><!-- end slideshow navigation -->
-				<div id="slideshow">  
-                                    
-                                    
+				<div id="slideshow">                                      
+                                   
                         <%
                             List<Inmueble> lista = (List<Inmueble>) ModeloInmueble.get();
                             List<Imagen> listaImagen;
@@ -122,8 +121,6 @@
                             }else if(lista.size()==3){
                             limite=3;
                             }
-                           
-                           
                             for (int i =0;i<limite;i++) {   
                                 listaImagen = (List<Imagen>) ModeloImagen.getidInmueble(lista.get(i).getId()+"");
                                 if(listaImagen.size()==0){
@@ -133,7 +130,6 @@
                                     rutas=rutaMal.split("/");
                                     rutaBien="images/"+rutas[1].toString()+"/"+rutas[2].toString()+"/"+rutas[3].toString();
                                 }
-                               
                         %>      
 					<div class="cycle">
 						<img src="<%= rutaBien %>" alt="" />
@@ -151,7 +147,6 @@
 					</div><!-- end cycle -->
                                         
                                          <%
-                                
                             }
                         %>	
 					
